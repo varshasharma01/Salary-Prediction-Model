@@ -2,14 +2,14 @@ import numpy as np
 from flask import Flask, request, render_template
 import pickle
 
-application = Flask(__name__) #will initialize the flask App
+app = Flask(__name__) #will initialize the flask App
 model = pickle.load(open('model.pkl', 'rb'))
 
-@application.route('/')
+@app.route('/')
 def home():
     return render_template('index.html')
 
-@application.route('/predict',methods=['POST'])
+@app.route('/predict',methods=['POST'])
 
 def predict():
     
@@ -26,4 +26,4 @@ def predict():
         input_values=int_features 
     )
 if __name__ == "__main__":
-    application.run(debug=True)
+    app.run(debug=True)
